@@ -47,9 +47,9 @@
     </div>
 </nav>
 
-<!-- MAIN CONTENT -->
-<main class="pt-29">
-    <?php include 'homepage.php'; ?>
+<!-- paste homepage content here -->
+<main id="content" class="pt-29">
+    <!-- Paste content of homepage.php here -->
 </main>
 
 <!-- Footer -->
@@ -63,6 +63,14 @@
     btn.addEventListener('click', () => {
         menu.classList.toggle('hidden');
     });
+</script>
+
+<script>
+fetch('homepage.html')
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('content').innerHTML = data;
+  });
 </script>
 </body>
 </html>
