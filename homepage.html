@@ -69,16 +69,25 @@
 
     </div>
 </section>
-
 <!-- PROJECTS -->
 <section id="projects" class="py-20 px-6">
     <h2 class="text-3xl font-bold text-center mb-12">Projects</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
 
         <!-- ECOMMERCE -->
-        <div data-aos="fade-up" class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
             <h3 class="font-bold text-lg mb-2">🛒 E-commerce Website</h3>
+
+            <div class="grid grid-cols-3 gap-2 mb-4">
+                <img src="images/ecom1.jpg" class="cursor-pointer rounded"
+                     onclick="openGallery(ecommerceImages, 0)">
+                <img src="images/ecom2.jpg" class="cursor-pointer rounded"
+                     onclick="openGallery(ecommerceImages, 1)">
+                <img src="images/ecom3.jpg" class="cursor-pointer rounded"
+                     onclick="openGallery(ecommerceImages, 2)">
+            </div>
+
             <ul class="text-gray-600 text-sm space-y-1">
                 <li>✔ Cart and checkout system</li>
                 <li>✔ Dynamic quantity updates</li>
@@ -88,9 +97,18 @@
         </div>
 
         <!-- DASHBOARD -->
-        <div data-aos="fade-up" data-aos-delay="200"
-             class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
             <h3 class="font-bold text-lg mb-2">📊 Data Dashboard</h3>
+
+            <div class="grid grid-cols-3 gap-2 mb-4">
+                <img src="images/Dulay's/image.png" class="cursor-pointer rounded"
+                     onclick="openGallery(dashboardImages, 0)">
+                <img src="images/dashboard2.jpg" class="cursor-pointer rounded"
+                     onclick="openGallery(dashboardImages, 1)">
+                <img src="images/dashboard3.jpg" class="cursor-pointer rounded"
+                     onclick="openGallery(dashboardImages, 2)">
+            </div>
+
             <ul class="text-gray-600 text-sm space-y-1">
                 <li>✔ Chart.js integration</li>
                 <li>✔ Responsive layout</li>
@@ -99,9 +117,18 @@
         </div>
 
         <!-- AUTH -->
-        <div data-aos="fade-up" data-aos-delay="400"
-             class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
+        <div class="bg-white p-6 rounded-xl shadow hover:shadow-xl transition">
             <h3 class="font-bold text-lg mb-2">🔐 Auth System</h3>
+
+            <div class="grid grid-cols-3 gap-2 mb-4">
+                <img src="images/auth1.jpg" class="cursor-pointer rounded"
+                     onclick="openGallery(authImages, 0)">
+                <img src="images/auth2.jpg" class="cursor-pointer rounded"
+                     onclick="openGallery(authImages, 1)">
+                <img src="images/auth3.jpg" class="cursor-pointer rounded"
+                     onclick="openGallery(authImages, 2)">
+            </div>
+
             <ul class="text-gray-600 text-sm space-y-1">
                 <li>✔ Login & registration</li>
                 <li>✔ Secure password handling</li>
@@ -111,6 +138,22 @@
 
     </div>
 </section>
+<div id="lightbox"
+     class="hidden fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+
+    <button onclick="closeGallery()"
+        class="absolute top-5 right-5 text-white text-3xl">✖</button>
+
+    <button onclick="prevImage()"
+        class="absolute left-5 text-white text-4xl">‹</button>
+
+    <img id="lightboxImg"
+         class="max-w-4xl max-h-[80vh] rounded-lg shadow-lg">
+
+    <button onclick="nextImage()"
+        class="absolute right-5 text-white text-4xl">›</button>
+
+</div>
 
 <!-- EXPERIENCE -->
     <section class="py-20 px-6 max-w-4xl mx-auto text-center md:text-left">
@@ -138,3 +181,52 @@
 
 </section>
 
+<script>
+let currentImages = [];
+let currentIndex = 0;
+
+// SEPARATE IMAGE GROUPS
+const ecommerceImages = [
+    "images/image.png",
+    "images/ecom2.jpg",
+    "images/ecom3.jpg"
+];
+
+const dashboardImages = [
+    "images/dashboard1.jpg",
+    "images/dashboard2.jpg",
+    "images/dashboard3.jpg"
+];
+
+const authImages = [
+    "images/auth1.jpg",
+    "images/auth2.jpg",
+    "images/auth3.jpg"
+];
+
+// OPEN GALLERY (NOW PER PROJECT)
+function openGallery(imagesArray, index) {
+    currentImages = imagesArray;
+    currentIndex = index;
+
+    document.getElementById("lightboxImg").src = currentImages[currentIndex];
+    document.getElementById("lightbox").classList.remove("hidden");
+}
+
+// CLOSE
+function closeGallery() {
+    document.getElementById("lightbox").classList.add("hidden");
+}
+
+// NEXT
+function nextImage() {
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    document.getElementById("lightboxImg").src = currentImages[currentIndex];
+}
+
+// PREV
+function prevImage() {
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    document.getElementById("lightboxImg").src = currentImages[currentIndex];
+}
+</script>
